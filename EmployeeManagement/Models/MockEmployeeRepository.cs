@@ -11,11 +11,10 @@ namespace EmployeeManagement.Models
         public MockEmployeeRepository()
         {
             _employeeList = new List<Employee>(){
-                new Employee() {Id = 1, Name = "Mary", Department = "HR", Email = "mary@dumbcompany.com"},
-                new Employee() {Id = 2, Name = "John", Department = "IT", Email = "john@dumbcompany.com"},
-                new Employee() {Id = 3, Name = "Sam", Department = "IT", Email = "sam@dumbcompany.com"},
+                new Employee() {Id = 1, Name = "Mary", Department = Dept.Sales, Email = "mary@dumbcompany.com"},
+                new Employee() {Id = 2, Name = "John", Department = Dept.Marketing, Email = "john@dumbcompany.com"},
+                new Employee() {Id = 3, Name = "Sam", Department = Dept.IT, Email = "sam@dumbcompany.com"},
             };
-
         }
 
         public IEnumerable<Employee> GetAllEmployees()
