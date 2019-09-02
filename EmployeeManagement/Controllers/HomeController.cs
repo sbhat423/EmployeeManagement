@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagement.Controllers
@@ -45,12 +46,15 @@ namespace EmployeeManagement.Controllers
         public IActionResult Create(EmployeeCreateViewModel model) {
             if (ModelState.IsValid) {
                 string uniaueFileName = null;
-                if (model.Photo != null)
+                if (model.Photos != null && model.Photos.Count > 0)
                 {
-                    string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
-                    uniaueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                    string filePath = Path.Combine(uploadFolder, uniaueFileName);
-                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    foreach (IFormFile photo in model.Photos)
+                    {
+                        string uploadFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                        uniaueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                        string filePath = Path.Combine(uploadFolder, uniaueFileName);
+                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    }
                 }
                 Employee newEmployee = new Employee
                 {
