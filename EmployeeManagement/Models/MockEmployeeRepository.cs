@@ -39,9 +39,9 @@ namespace EmployeeManagement.Models
             return _employeeList;
         }
 
-        public Employee GetEmployee(int Id)
+        public Employee GetEmployee(int id)
         {
-            return _employeeList.FirstOrDefault(e => e.Id == Id);
+            return _employeeList.FirstOrDefault(e => e.Id == id);
         }
 
         public Employee Update(Employee employeeChanges)
