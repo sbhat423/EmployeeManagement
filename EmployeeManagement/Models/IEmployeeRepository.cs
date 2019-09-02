@@ -10,5 +10,7 @@ namespace EmployeeManagement.Models
         Employee GetEmployee(int Id);
         IEnumerable<Employee> GetAllEmployees();
         Employee AddEmployee(Employee employee);
+        Employee Update(Employee employeeChanges);
+        Employee Delete(int id);
     }
 }
